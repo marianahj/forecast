@@ -1,0 +1,86 @@
+#your-forecast-page {
+  font-size: 14px;
+  height:100%;
+  background:#B0C4DE;
+  display:flex;
+  align-items: center;
+  overflow:scroll;
+  flex-direction: column;
+
+  .header {
+    flex: 0;
+    margin: 20px 0 10px 0;
+
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  .table-container {
+    margin: 25px 0;
+    max-width: 600px;
+
+    .table-header {
+      border-bottom: 1px solid dimgrey;
+
+      h2 {
+        margin-bottom: 5px;
+      }
+
+      .current-time {
+        margin-bottom: 5px;
+      }
+    }
+
+    .table-body {
+      margin-top: 10px;
+
+      table {
+        width: 100%;
+      }
+
+      th {
+        font-weight: bold;
+      }
+
+      th, td {
+        padding: 5px;
+      }
+
+      table, tr, td, th {
+        border: 1px solid dimgrey;
+        border-collapse: collapse;
+        text-align: center;
+      }
+
+      .data {
+        font-size: 12px;
+        width: 100%
+      }
+    }
+  }
+
+  .back-btn {
+    font-weight: bold;
+    color: dimgrey;
+    text-decoration: none;
+  }
+
+  .error-container{
+    width: 600px;
+    margin: 25% 0;
+
+    .error-message {
+      text-align: center;
+      font-size: 24px;
+      color: white;
+      background: red;
+
+    }
+  }
+}
+
+
+
+
+

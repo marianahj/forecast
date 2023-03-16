@@ -1,0 +1,51 @@
+<section id='forecast-page'>
+  <%= form_with url: "/forecasts/new", method: :get, class: 'address-form' do |form| %>
+    <div class="form-header">
+      <h1>Forecast</h1>
+      <h3>Insert your address</h3>
+    </div>
+    <div class="form-body">
+      <div class="row">
+        <div class="input-group">
+          <%= form.label :street_1, "Address Line 1:" %>
+          <%= form.text_field :street_1 %>
+        </div>
+        <div class="input-group">
+          <%= form.label :street_2, "Address Line 2:" %>
+          <%= form.text_field :street_2 %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-group">
+          <%= form.label :city, "City:" %>
+          <%= form.text_field :city %>
+        </div>
+        <div class="input-group">
+          <%= form.label :state, "State:" %>
+          <%= form.text_field :state %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-group">
+          <%= form.label :zipcode, "Zip Code:" %>
+          <%= form.text_field :zipcode %>
+
+        </div>
+        <div class="input-group">
+          <%= form.label :country_code, "Country:" %>
+          <%= form.select :country_code, IsoCountryCodes.for_select, selected: 'US'  %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-group">
+          <%= form.submit "Enter", class: 'btn' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+

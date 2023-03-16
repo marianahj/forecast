@@ -1,0 +1,8 @@
+<section id='your-forecast-page'>
+  <div class="header">
+    <h1>Your Forecast</h1>
+  </div>
+
+  <%= render template: 'forecasts/_forecast_table', locals: { forecast: @forecast, error: @error } %>
+</section>
+

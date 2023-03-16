@@ -1,0 +1,68 @@
+<section id='forecast-table'>
+  <%- if error %>
+    <div class="error-container">
+      <p class="error-message"><%= error_message %></p>
+    </div>
+  <%- else %>
+    <div class="table-container">
+      <div class="table-header">
+        <h2>Current Weather</h2>
+        <p class="current-time"><%= current_weather[:time] %></p>
+      </div>
+
+      <div class="table-body">
+        <table>
+          <tbody>
+          <tr>
+            <th>Temperature</th>
+            <th>Wind Speed</th>
+            <th>Weather</th>
+          </tr>
+          <tr>
+            <td> <%= "#{ current_weather[:temperature]  } °F" %></td>
+            <td> <%= "#{ current_weather[:wind_speed] } mph" %></td>
+            <td> <%= current_weather[:weather_code] %></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <div class="table-header">
+        <h2>Daily Forecast</h2>
+        <p class="current-time">Forecast for the next 7 days</p>
+      </div>
+
+      <div class="table-body">
+        <table>
+          <tbody>
+          <tr>
+            <%- daily_weather.each do |day| %>
+              <th><%= day[:day] %></th>
+            <% end %>
+          </tr>
+          <tr>
+            <%- daily_weather.each do |day| %>
+              <td>
+                <p class="data">H: <%= day[:max_temperature] %>°F</p>
+                <p class="data">L: <%= day[:min_temperature] %>°F</p>
+                <p class="data"><%= day[:weather_code] %></p>
+              </td>
+            <% end %>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to 'Go Back', root_path, class: 'back-btn' %>
+
+</section>
+
+
+
+
+
+
