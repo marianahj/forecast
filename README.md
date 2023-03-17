@@ -55,6 +55,7 @@ the Weather Forecast API, it redirects to `forecast/new` to display the data.
 ### Models
 The Weather Forecast API works with coordinates, in order to get the coordinates (`.coordinates`) for the  given address, I created
 the `Address` model. This model converts the address params into a String needed to get the coordinates using then geocoder gem.
+I decided to add this model because I considered that this logic doesn't belongs to the API wrapper or the controller.
 
 I realized that the `geocoder` gem won't return a search result if I added the Address Line 2 (Apt, Unit, Floor, etc.). 
 I decided to still include it in the form to minimized the chance that the user will add that information into the Address Line 1. In
@@ -64,6 +65,8 @@ comes from the `iso_country_codes` gem.
 ### Services
 I created the `OpenMeteoService` as an API wrapper, it contains all the functionality to communicate with the API
 and it returns a JSON with the data. If the API responds with an error, it responds with the error description message.
+I added the cache layer into the API request. If the zipcode is already in cache, it responds from cache. I am only caching
+successful responses. 
 
 ### Helpers
 I am using the `ForecastsHelper` to build the data objects needed in the views. It transforms data into a readable format, for example:
