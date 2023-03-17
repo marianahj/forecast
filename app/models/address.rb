@@ -1,18 +1,20 @@
 class Address
   include ActiveModel::Validations
 
-  attr_accessor :street_1, :street_2, :city, :state, :zipcode, :country_code
-  attr_reader :address
-
   def initialize(attributes = {})
-    address_attr = attributes.values
-    address_attr.delete_at(1) # Geocoder doesn't work with Apt, Unit, Floor, etc.
-    @address = address_attr.compact.join(',')
+    @attrs = attributes.except(:street_2)
+  end
+
+  def full_address
+    @attrs.values.compact.join(',')
   end
 
   def coordinates
-    return [] if address.blank?
+    return [] if full_address.blank?
+    Geocoder.search(full_address).first&.coordinates
+  end
 
-    Geocoder.search(address).first&.coordinates
+  def zipcode
+    @attrs[:zipcode]
   end
 end
