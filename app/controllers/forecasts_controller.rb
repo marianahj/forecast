@@ -2,16 +2,13 @@ class ForecastsController < ApplicationController
   def index; end
 
   def new
-    coordinates = Address.new(address_params).coordinates
+    address = Address.new(address_params)
 
-    if coordinates
-      # Add Cache
-      open_meteo_service = OpenMeteoService.new(coordinates)
-      @forecast  = open_meteo_service.get
-      @error = open_meteo_service.error?
+    if address.coordinates
+      open_meteo_service = OpenMeteoService.new(address.coordinates, address.zipcode)
+      @forecast  = open_meteo_service.forecast
     else
-      @forecast = { error_message: 'Address invalid' }
-      @error = true
+      @forecast = HashWithIndifferentAccess.new(reason: 'Address invalid', error: true)
     end
   end
 

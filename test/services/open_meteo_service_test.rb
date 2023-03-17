@@ -3,7 +3,8 @@ require "test_helper"
 class OpenMeteoServiceTest < ActiveSupport::TestCase
   response = File.read('test/fixtures/files/open_meteo_service_response.json')
   coordinates = [52.52, 13.419998]
-  subject = OpenMeteoService.new(coordinates)
+  zipcode = '94127'
+  subject = OpenMeteoService.new(coordinates, zipcode)
   url = subject.send(:url)
 
   setup do
@@ -11,12 +12,12 @@ class OpenMeteoServiceTest < ActiveSupport::TestCase
       to_return(body: response)
   end
 
-  test 'returns a parsed JSON response' do
-    assert_equal subject.get, JSON.parse(response)
+  test"adds the cache:true key when returning from cache" do
+    assert_equal subject.forecast, JSON.parse(response).merge(cache: true)
   end
 
-  test 'returns false for success response' do
-    subject.get
-    assert_equal subject.error?, false
+  test 'returns a parsed JSON response' do
+    assert_equal subject.forecast, JSON.parse(response)
   end
+
 end

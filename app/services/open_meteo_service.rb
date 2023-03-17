@@ -10,15 +10,21 @@ class OpenMeteoService
   TIMEFORMAT = 'unixtime'
   TIMEZONE = 'America/Los_Angeles'
 
-  def initialize(coordinates)
+  def initialize(coordinates, zipcode)
     @coordinates = coordinates
-  end
-  def get
-    @response = JSON.parse(Net::HTTP.get(url))
+    @zipcode = zipcode
   end
 
-  def error?
-    @response.key?('error')
+  def forecast
+    if response = Rails.cache.read(@zipcode)
+      response.merge(cache: true)
+    else
+      response = JSON.parse(Net::HTTP.get(url))
+      if !response.key?('error')
+        Rails.cache.write(@zipcode, response, :expires_in => 30.minutes)
+      end
+      response
+    end
   end
 
   private
