@@ -1,9 +1,15 @@
 <section id='forecast-table'>
-  <%- if error %>
+  <%- if error? %>
     <div class="error-container">
       <p class="error-message"><%= error_message %></p>
     </div>
   <%- else %>
+
+    <%- if from_cache? %>
+      <div class="cache-message">
+        <p> Rendering from cache... </p>
+      </div>
+    <% end %>
     <div class="table-container">
       <div class="table-header">
         <h2>Current Weather</h2>

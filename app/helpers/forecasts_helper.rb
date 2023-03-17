@@ -37,8 +37,16 @@ module ForecastsHelper
     Date::DAYNAMES[Time.at(unix_time).wday]
   end
 
+  def error?
+    @forecast['error']
+  end
+
   def error_message
-    @forecast['reason'] || @forecast[:error_message]
+    @forecast['reason']
+  end
+
+  def from_cache?
+    @forecast[:cache]
   end
 
 end

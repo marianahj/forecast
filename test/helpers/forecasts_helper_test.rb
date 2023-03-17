@@ -16,7 +16,8 @@ class ForecastsHelperTest < ActionView::TestCase
              {:day=>"Friday", :max_temperature=>55, :min_temperature=>36.2, :weather_code=>"Partly cloudy"},
              {:day=>"Saturday", :max_temperature=>54.5, :min_temperature=>43.3, :weather_code=>"Partly cloudy"},
              {:day=>"Sunday", :max_temperature=>59.5, :min_temperature=>40.7, :weather_code=>"Partly cloudy"},
-             {:day=>"Monday", :max_temperature=>48.5, :min_temperature=>40.2, :weather_code=>"Partly cloudy"}]
+             {:day=>"Monday", :max_temperature=>48.5, :min_temperature=>40.2, :weather_code=>"Partly cloudy"},
+             {:day=>"Tuesday", :max_temperature=>57.7, :min_temperature=>42.7, :weather_code=>"Partly cloudy"}]
 
     assert_equal daily_weather, daily
   end
