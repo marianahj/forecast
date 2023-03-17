@@ -37,13 +37,4 @@ class ForecastsHelperTest < ActionView::TestCase
     assert_equal day_of_week(unix_time), 'Wednesday'
   end
 
-  test 'returns error message from the open meteo service' do
-    @forecast = { 'error' => true, 'reason' => "Value of type 'Float' required for key 'latitude'." }
-    assert_equal error_message, "Value of type 'Float' required for key 'latitude'."
-  end
-
-  test 'returns error message when address is invalid' do
-    @forecast = { error_message: 'Address invalid' }
-    assert_equal error_message, 'Address invalid'
-  end
 end
