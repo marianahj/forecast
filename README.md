@@ -28,6 +28,8 @@ Get the current and next week forecast for your address.
 - Address Line 1 and Zip Code are mandatory fields.
 - The forecast is cached for 30 minutes based on the zip code.
 - No database is needed.
+- My choice was to maximize the usage of Rails' built-in tools instead of incorporating gems, primarily because 
+I believe it would facilitate the reviewing process. 
 
 
 ## APIs / Libraries used
@@ -78,6 +80,7 @@ and because of the time frame, however, I identify some possible improvements:
 1. Single page app: render the address form and the forecast tables in the same page using RoR and Javascript.
 2. Add Integration tests.
 3. Add validations to the form fields.
+4. Including an auto-complete feature within the form would increase the accuracy of the provided addresses and improve the likelihood of obtaining successful search results. 
 
 
 
